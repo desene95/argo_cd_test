@@ -38,4 +38,4 @@ spec:
       - name: chromadb
         image: snikpic/chromadb:latest
         ports:
-        - containerPort: 8080
+        - containerPort: 3889
