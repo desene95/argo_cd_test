@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: myapp-argo-application
+  namespace: argocd
+spec:
+  project: default
+
+  source:
+    repoURL: https://github.com/desene95/argo_cd_test.git
+    targetRevision:  HEAD
+    path: main
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: myapp
+
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true #create a namespace if it doesnt exist
+
+    automated:
+      selfHeal: true #if it notices manual changes, overwrite and match with git repo
+      prune: true #delete manual changes
+      
